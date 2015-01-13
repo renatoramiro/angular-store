@@ -43,7 +43,10 @@
 	            <tr ng-repeat="product in store.products">
 	              <td>{{product.name}}</td>
 	              <td>{{product.price | currency}}</td>
-	              <td><a href="#" class="btn btn-xs btn-primary">Show</a> <a href="#" class="btn btn-xs btn-success">Edit</a> <a href="#" class="btn btn-xs btn-danger">Delete</a></td>
+	              <td>
+	              	<a href="#" class="btn btn-xs btn-success"><span class="glyphicon glyphicon-edit"></span></a> 
+	              	<a href="#" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
+	              </td>
 	            </tr>
 	          </tbody>
 	        </table>
