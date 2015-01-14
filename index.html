@@ -44,7 +44,7 @@
 	              <td>{{product.name}}</td>
 	              <td>{{product.price | currency}}</td>
 	              <td ng-controller = "ProductsController as productCtrl">
-	              	<a href="#" class="btn btn-xs btn-success"><span class="glyphicon glyphicon-edit"></span></a> 
+	              	<a href="#" ng-click="productCtrl.fillForm($event, store, product)" class="btn btn-xs btn-success"><span class="glyphicon glyphicon-edit"></span></a> 
 	              	<a href="#" ng-click = "productCtrl.removeProduct($event, store, product)" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
 	              </td>
 	            </tr>
@@ -53,21 +53,21 @@
 	      </div>
 	      <div class="col-sm-6">
 	      	<h2>Add new Product</h2>
-      	<form name="productForm" ng-controller="ProductsController as productCtrl" ng-submit="productForm.$valid && productCtrl.addProduct(store)" novalidate>
-				  <div class="form-group">
-				    <label for="productName">Name</label>
-				    <input ng-model="productCtrl.name" type="text" class="form-control" name="productName" placeholder="Enter the product name" required>
-				  </div>
-				  <div class="form-group">
-				    <label for="productPrice">Price</label>
-				    <input ng-model="productCtrl.price" type="text" class="form-control" name="productPrice" placeholder="Enter the product price" required>
-				  </div>
-				  <button type="submit" class="btn btn-primary">Submit</button>
-				  <a ng-click="productCtrl.reset()" class="btn btn-default">Reset</a>
-				</form>
+	      	<form name="productForm" ng-controller="ProductsController as productCtrl" ng-submit="productForm.$valid && productCtrl.addProduct(store)" novalidate>
+					  <div class="form-group">
+					    <label for="productName">Name</label>
+					    <input ng-model="productCtrl.name" type="text" class="form-control" name="productName" placeholder="Enter the product name" required>
+					  </div>
+					  <div class="form-group">
+					    <label for="productPrice">Price</label>
+					    <input ng-model="productCtrl.price" type="text" class="form-control" name="productPrice" placeholder="Enter the product price" required>
+					  </div>
+					  <input ng-model="productCtrl.$$hashKey" type="hidden" name="productKey">
+					  <button type="submit" class="btn btn-primary">Submit</button>
+					  <a ng-click="productCtrl.reset()" class="btn btn-default">Reset</a>
+					</form>
 	      </div>
     	</div>
-
     </div><!-- /.container -->    
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>

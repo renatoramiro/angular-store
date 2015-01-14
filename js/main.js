@@ -12,7 +12,7 @@
 
 		this.products = gems;
 	});
-	app.controller('ProductsController', ['$scope', function($scope){
+	app.controller('ProductsController', ['$scope', '$document', function($scope, $document){
 				this.product = {};
 		
 				this.addProduct = function (store) {
@@ -23,6 +23,7 @@
 					this.name = '';
 					this.price = '';
 					$scope.productForm.$setPristine();
+					console.log($scope);
 				};
 	
 				this.removeProduct = function($event, store, product){
@@ -39,6 +40,15 @@
 					this.name = '';
 					this.price = '';
 					$scope.productForm.$setPristine();
+					$document[0].forms.productForm[0].value = '';
+					$document[0].forms.productForm[1].value = '';
+				};
+
+				this.fillForm = function($event, store, product) {
+					$event.preventDefault();
+					$document[0].forms.productForm[0].value = product.name;
+					$document[0].forms.productForm[1].value = product.price;
+					$document[0].forms.productForm[2].value = product.$$hashKey;
 				}
 			}]);
 })();
