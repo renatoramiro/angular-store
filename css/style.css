@@ -1,3 +1,11 @@
 body {
 	margin-top: 60px;
 }
+
+.ng-dirty.ng-valid {
+	border-color: green;
+}
+
+.ng-dirty.ng-invalid {
+	border-color: red;
+}
