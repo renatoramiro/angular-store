@@ -54,9 +54,6 @@
 	      <div class="col-sm-6">
 	      	<h2>Add new Product</h2>
       	<form name="productForm" ng-controller="ProductsController as productCtrl" ng-submit="productForm.$valid && productCtrl.addProduct(store)" novalidate>
-      		<p>
-				    <strong>{{productCtrl.name}}</strong>  {{productCtrl.price | currency}}
-				  </p>
 				  <div class="form-group">
 				    <label for="productName">Name</label>
 				    <input ng-model="productCtrl.name" type="text" class="form-control" name="productName" placeholder="Enter the product name" required>
@@ -65,7 +62,8 @@
 				    <label for="productPrice">Price</label>
 				    <input ng-model="productCtrl.price" type="text" class="form-control" name="productPrice" placeholder="Enter the product price" required>
 				  </div>
-				  <button type="submit" class="btn btn-default">Submit</button>
+				  <button type="submit" class="btn btn-primary">Submit</button>
+				  <a ng-click="productCtrl.reset()" class="btn btn-default">Reset</a>
 				</form>
 	      </div>
     	</div>
