@@ -44,7 +44,7 @@
 	              <td>{{product.name}}</td>
 	              <td>{{product.price | currency}}</td>
 	              <td ng-controller = "ProductsController as productCtrl">
-	              	<a href="#" ng-click="productCtrl.fillForm($event, store, product)" class="btn btn-xs btn-success"><span class="glyphicon glyphicon-edit"></span></a> 
+	              	<a href="#" ng-click="productCtrl.fillForm($event, product)" class="btn btn-xs btn-success"><span class="glyphicon glyphicon-edit"></span></a> 
 	              	<a href="#" ng-click = "productCtrl.removeProduct($event, store, product)" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
 	              </td>
 	            </tr>
@@ -52,8 +52,8 @@
 	        </table>
 	      </div>
 	      <div class="col-sm-6">
-	      	<h2>Add new Product</h2>
-	      	<form name="productForm" ng-controller="ProductsController as productCtrl" ng-submit="productForm.$valid && productCtrl.addProduct(store)" novalidate>
+	      	<h2>Product Form</h2>
+	      	<form name="productForm" ng-controller="ProductsController as productCtrl" ng-submit="productForm.$valid && productCtrl.submitProduct(store)" novalidate>
 					  <div class="form-group">
 					    <label for="productName">Name</label>
 					    <input ng-model="productCtrl.name" type="text" class="form-control" name="productName" placeholder="Enter the product name" required>

@@ -15,15 +15,23 @@
 	app.controller('ProductsController', ['$scope', '$document', function($scope, $document){
 				this.product = {};
 		
-				this.addProduct = function (store) {
+				this.submitProduct = function (store) {
 					this.product = {name: this.name, price: this.price};
-					//Adicionar produto no array de produtos
-					store.products.push(this.product);
+					if ($document[0].forms.productForm[2].value) {
+						var key = $document[0].forms.productForm[2].value;
+						$.each(store.products, function(i){
+					    if(store.products[i].$$hashKey === key) {
+				        store.products[i].name = $document[0].forms.productForm[0].value;
+				        store.products[i].price = $document[0].forms.productForm[1].value;
+				        return false;
+					    }
+						});
+					} else {
+						//Adicionar produto no array de produtos
+						store.products.push(this.product);
+					}
 					//Limpar o formulário
-					this.name = '';
-					this.price = '';
-					$scope.productForm.$setPristine();
-					console.log($scope);
+					this.reset();
 				};
 	
 				this.removeProduct = function($event, store, product){
@@ -39,13 +47,14 @@
 				this.reset = function () {
 					this.name = '';
 					this.price = '';
+					$document[0].forms.productForm[2].value = '';
 					$scope.productForm.$setPristine();
-					$document[0].forms.productForm[0].value = '';
-					$document[0].forms.productForm[1].value = '';
 				};
 
-				this.fillForm = function($event, store, product) {
+				this.fillForm = function($event, product) {
 					$event.preventDefault();
+					this.name = product.name;
+					this.price = product.price;
 					$document[0].forms.productForm[0].value = product.name;
 					$document[0].forms.productForm[1].value = product.price;
 					$document[0].forms.productForm[2].value = product.$$hashKey;
